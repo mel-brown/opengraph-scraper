@@ -1,2 +1,13 @@
 cradle:
   stack:
+    - path: "./src"
+      component: "opengraph-scraper:lib"
+
+    - path: "./app/Main.hs"
+      component: "opengraph-scraper:exe:opengraph-scraper-exe"
+
+    - path: "./app/Paths_opengraph_scraper.hs"
+      component: "opengraph-scraper:exe:opengraph-scraper-exe"
+
+    - path: "./test"
+      component: "opengraph-scraper:test:opengraph-scraper-test"

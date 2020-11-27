@@ -2,15 +2,21 @@
 
 module Main where
 
-import           Data.OpenGraph
+import Data.OpenGraph (openGraphScraper)
 
-import           Control.Monad.IO.Class (liftIO)
-import           Data.Aeson
-import           Data.Maybe
-import           Happstack.Server
-import           Text.HTML.Scalpel
+import Control.Monad.IO.Class (liftIO)
+import Happstack.Server (
+    Response,
+    ServerPart,
+    ToMessage (toResponse),
+    look,
+    nullConf,
+    ok,
+    simpleHTTP,
+ )
+import Text.Blaze.Html5 (Html, h1, p, toHtml)
 import qualified Text.Blaze.Html5 as H
-import           Text.Blaze.Html5 (Html, toHtml, h1, p)
+import Text.HTML.Scalpel (scrapeURL)
 
 main :: IO ()
 main = simpleHTTP nullConf test
@@ -23,8 +29,9 @@ template title body = toResponse $
 
 test :: ServerPart Response
 test = do
-    url     <- look "url"
+    url <- look "url"
     urlData <- liftIO (scrapeURL url openGraphScraper)
-    ok $ template "OpenGraph Scraper" $ do
-        h1 "OpenGraph Data"
-        mconcat . map (p . toHtml) . lines . maybe "OpenGraph data not found!" show $ urlData
+    ok $
+        template "OpenGraph Scraper" $ do
+            h1 "OpenGraph Data"
+            mconcat . map (p . toHtml) . lines . maybe "OpenGraph data not found!" show $ urlData
