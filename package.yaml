@@ -1,10 +1,11 @@
-name:                opengraph-scraper
-version:             0.1.0.0
-github:              "mel-brown/opengraph-scraper"
-license:             BSD3
-author:              "Melanie Brown"
-maintainer:          "brown.m@protonmail.com"
-copyright:           "2020 Melanie Brown"
+name:               opengraph-scraper
+version:            0.1.0.0
+github:             "mel-brown/opengraph-scraper"
+license:            BSD3
+license-file:       LICENSE
+author:             "Melanie Brown"
+maintainer:         "brown.m@protonmail.com"
+copyright:          "2020 Melanie Brown"
 
 extra-source-files:
 - README.md
@@ -21,10 +22,21 @@ description:         Please see the README on GitHub at <https://github.com/mel-
 
 dependencies:
   - aeson
-  - base    >= 4.7 && < 5
+  - base
   - blaze-html
+  - extra
   - happstack-server
   - scalpel
+  - time
+
+default-extensions:
+  - LambdaCase
+  - MultiWayIf
+  - ImportQualifiedPost
+  - RecordWildCards
+  - TupleSections
+  - TypeApplications
+  - ViewPatterns
 
 library:
   source-dirs: src

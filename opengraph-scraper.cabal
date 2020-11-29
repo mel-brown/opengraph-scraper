@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e5e57552eb20608a2fb8b17242f77384269f9596cd70d4bb18595817000161c7
+-- hash: e51d861be88e21b5b8ccf0d80d2950b7834e4443f7660a309546449dcd26fc58
 
 name:           opengraph-scraper
 version:        0.1.0.0
@@ -28,16 +28,23 @@ source-repository head
 library
   exposed-modules:
       Data.OpenGraph
+      Data.OpenGraph.Types
+      Data.OpenGraph.Types.Music
+      Data.OpenGraph.Types.NoVertical
+      Data.OpenGraph.Types.Video
   other-modules:
       Paths_opengraph_scraper
   hs-source-dirs:
       src
+  default-extensions: LambdaCase MultiWayIf ImportQualifiedPost RecordWildCards TupleSections TypeApplications ViewPatterns
   build-depends:
       aeson
-    , base >=4.7 && <5
+    , base
     , blaze-html
+    , extra
     , happstack-server
     , scalpel
+    , time
   default-language: Haskell2010
 
 executable opengraph-scraper-exe
@@ -46,14 +53,17 @@ executable opengraph-scraper-exe
       Paths_opengraph_scraper
   hs-source-dirs:
       app
+  default-extensions: LambdaCase MultiWayIf ImportQualifiedPost RecordWildCards TupleSections TypeApplications ViewPatterns
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
-    , base >=4.7 && <5
+    , base
     , blaze-html
+    , extra
     , happstack-server
     , opengraph-scraper
     , scalpel
+    , time
   default-language: Haskell2010
 
 test-suite opengraph-scraper-test
@@ -63,12 +73,15 @@ test-suite opengraph-scraper-test
       Paths_opengraph_scraper
   hs-source-dirs:
       test
+  default-extensions: LambdaCase MultiWayIf ImportQualifiedPost RecordWildCards TupleSections TypeApplications ViewPatterns
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
-    , base >=4.7 && <5
+    , base
     , blaze-html
+    , extra
     , happstack-server
     , opengraph-scraper
     , scalpel
+    , time
   default-language: Haskell2010
